@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhiram Reddy Tadi — CAD & Product Design Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F3EC;
+    --paper-dim:#EDEAE0;
+    --ink:#1D2124;
+    --ink-soft:#4B5157;
+    --blue:#2B4C7E;
+    --brass:#A87C3F;
+    --hairline:#C9C4B6;
+    --hairline-dark:#3A3F44;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82em;
+    color:var(--ink-soft);
+  }
+  a{color:var(--blue); text-decoration:none; border-bottom:1px solid var(--blue);}
+  a:hover{color:var(--brass); border-color:var(--brass);}
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+
+  /* ---- Title block header ---- */
+  .titleblock{
+    border-bottom:3px solid var(--ink);
+    padding:40px 0 0 0;
+  }
+  .titleblock-grid{
+    display:grid;
+    grid-template-columns: 1fr auto;
+    gap:24px;
+    align-items:end;
+    padding-bottom:24px;
+  }
+  .titleblock h1{
+    font-size:2.6rem;
+    font-weight:700;
+    line-height:1.05;
+  }
+  .titleblock .role{
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    margin-top:8px;
+    max-width:44ch;
+  }
+  .tb-meta{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(120px,1fr));
+    border:1px solid var(--hairline-dark);
+  }
+  .tb-cell{
+    padding:8px 12px;
+    border-right:1px solid var(--hairline-dark);
+    border-bottom:1px solid var(--hairline-dark);
+  }
+  .tb-cell:nth-child(2n){border-right:none;}
+  .tb-cell:nth-last-child(-n+2){border-bottom:none;}
+  .tb-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--ink-soft);
+    display:block;
+    margin-bottom:2px;
+  }
+  .tb-value{font-size:0.86rem; font-weight:500;}
+  .tb-value a{border-bottom:1px solid var(--hairline-dark);}
+
+  /* ---- Sections ---- */
+  section{padding:56px 0;}
+  section + section{border-top:1px solid var(--hairline);}
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:28px;
+  }
+  .sec-num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:0.9rem;
+  }
+  .sec-head h2{font-size:1.5rem;}
+
+  /* profile */
+  .profile p{max-width:66ch; font-size:1.02rem;}
+
+  /* skills as parts-list table */
+  table.parts{
+    width:100%;
+    border-collapse:collapse;
+    font-size:0.92rem;
+  }
+  table.parts th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--hairline-dark);
+    padding:6px 12px 6px 0;
+  }
+  table.parts td{
+    border-bottom:1px solid var(--hairline);
+    padding:12px 12px 12px 0;
+    vertical-align:top;
+  }
+  table.parts td.cat{
+    font-weight:600;
+    width:180px;
+    color:var(--blue);
+  }
+
+  /* project sheets */
+  .sheet{
+    border:1px solid var(--hairline-dark);
+    padding:28px;
+    margin-bottom:28px;
+    position:relative;
+  }
+  .sheet::before, .sheet::after,
+  .sheet-corner-a, .sheet-corner-b{
+    content:"";
+    position:absolute;
+    width:10px; height:10px;
+    border:1px solid var(--brass);
+  }
+  .sheet::before{top:-1px; left:-1px; border-right:none; border-bottom:none;}
+  .sheet::after{bottom:-1px; right:-1px; border-left:none; border-top:none;}
+  .sheet-title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:6px;
+  }
+  .sheet h3{font-size:1.2rem;}
+  .status-row{
+    display:flex;
+    gap:18px;
+    margin:16px 0 18px 0;
+    font-size:0.85rem;
+  }
+  .status-row .mono{font-size:0.72rem;}
+  .status-dot{
+    display:inline-block;
+    width:8px; height:8px;
+    border-radius:50%;
+    margin-right:6px;
+    position:relative;
+    top:-1px;
+  }
+  .status-dot.done{background:var(--blue);}
+  .status-dot.next{background:var(--brass);}
+  .sheet p{margin:0 0 14px 0; max-width:70ch;}
+  .sheet ul{margin:0 0 14px 20px; padding:0;}
+  .sheet li{margin-bottom:6px; max-width:66ch;}
+  .render-slot{
+    border:1px dashed var(--hairline-dark);
+    background:var(--paper-dim);
+    padding:22px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  /* 3D viewer */
+  .viewer{
+    border:1px solid var(--hairline-dark);
+    margin-bottom:20px;
+  }
+  .viewer-stage{
+    position:relative;
+    width:100%;
+    height:440px;
+    background:#FFFFFF;
+    cursor:grab;
+  }
+  .viewer-stage:active{cursor:grabbing;}
+  .viewer-stage canvas{display:block; width:100%; height:100%;}
+  .viewer-note{
+    position:absolute;
+    left:12px; bottom:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--ink-soft);
+    pointer-events:none;
+  }
+  .viewer-loading{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    pointer-events:none;
+  }
+  .viewer-parts{
+    display:flex;
+    flex-wrap:wrap;
+    border-top:1px solid var(--hairline-dark);
+    background:var(--paper-dim);
+  }
+  .viewer-parts button{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    padding:10px 14px;
+    background:transparent;
+    border:none;
+    border-right:1px solid var(--hairline);
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .viewer-parts button:hover{color:var(--ink);}
+  .viewer-parts button:focus-visible{outline:2px solid var(--blue); outline-offset:-2px;}
+  .viewer-parts button.active{
+    background:var(--paper);
+    color:var(--blue);
+    box-shadow:inset 0 -2px 0 var(--blue);
+  }
+  @media (max-width:640px){
+    .viewer-stage{height:320px;}
+  }
+  .result-strip{
+    display:flex;
+    gap:28px;
+    border-top:1px solid var(--hairline);
+    border-bottom:1px solid var(--hairline);
+    padding:14px 0;
+    margin:16px 0;
+    flex-wrap:wrap;
+  }
+  .result-strip div{font-size:0.85rem;}
+  .result-strip .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:1.15rem;
+    color:var(--blue);
+    display:block;
+  }
+
+  /* education / certs */
+  .ed-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  .ed-item h4{font-size:1rem; margin-bottom:4px;}
+  .ed-item .mono{display:block; margin-bottom:6px;}
+  .ed-item p{margin:0; font-size:0.92rem; color:var(--ink-soft);}
+
+  /* footer title block */
+  footer{
+    border-top:3px solid var(--ink);
+    padding:32px 0 40px 0;
+  }
+  .foot-grid{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:20px;
+    font-size:0.85rem;
+  }
+  .foot-grid .mono{margin-bottom:4px; display:block;}
+
+  @media (max-width:640px){
+    .titleblock-grid{grid-template-columns:1fr;}
+    .tb-meta{grid-template-columns:1fr;}
+    .tb-cell{border-right:none;}
+    .ed-grid{grid-template-columns:1fr;}
+    .titleblock h1{font-size:2rem;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="titleblock">
+    <div class="titleblock-grid">
+      <div>
+        <h1>Abhiram Reddy Tadi</h1>
+        <p class="role">CAD-focused product design engineer — SolidWorks modelling, manufacturing drawings, and reverse engineering, seeking a junior CAD Technician / Design Engineer role.</p>
+      </div>
+      <div class="tb-meta">
+        <div class="tb-cell"><span class="tb-label">LOCATION</span><span class="tb-value">London, UK — open to relocation</span></div>
+        <div class="tb-cell"><span class="tb-label">STATUS</span><span class="tb-value">CSWA certified</span></div>
+        <div class="tb-cell"><span class="tb-label">EMAIL</span><span class="tb-value"><a href="mailto:abhiramtadi@gmail.com">abhiramtadi@gmail.com</a></span></div>
+        <div class="tb-cell"><span class="tb-label">LINKEDIN</span><span class="tb-value"><a href="https://linkedin.com/in/abhiramreddytadi" target="_blank">/in/abhiramreddytadi</a></span></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="profile">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Profile</h2>
+    </div>
+    <p>Product design engineering graduate with an MSc from Kingston University London and a BTech in Mechanical Engineering, backed by a Certified SolidWorks Associate (CSWA) qualification. Hands-on experience building 3D models, multi-part assemblies, and manufacturing drawings in SolidWorks — including a self-directed reverse-engineering project converting a physical product into a fully parametric assembly with a defined datum scheme, assembly mates, and mass-property checks. Comfortable managing a design from concept through to manufacture-ready documentation.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Skills</h2>
+    </div>
+    <table class="parts">
+      <tr><th>Category</th><th>Item</th></tr>
+      <tr><td class="cat">CAD</td><td>SolidWorks (CSWA-certified) — part modelling, multi-part assemblies, engineering drawings, mass properties, reverse engineering from physical parts; Siemens NX; ANSYS Design Modeler</td></tr>
+      <tr><td class="cat">CAM &amp; Manufacturing</td><td>CNC toolpath principles, machining simulation &amp; collision avoidance, mould design basics, 3D printing / rapid prototyping, DFMA</td></tr>
+      <tr><td class="cat">Metrology &amp; Practice</td><td>Digital vernier caliper measurement &amp; dimensional inspection, engineering drawings to BS standards, GD&amp;T fundamentals, PDM/PLM concepts</td></tr>
+      <tr><td class="cat">Simulation (CAE)</td><td>ANSYS CFX &amp; Workbench — CFD analysis, meshing with inflation layers, FEA fundamentals</td></tr>
+      <tr><td class="cat">General</td><td>Microsoft Office, technical report writing, data analysis &amp; presentation</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Projects</h2>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-title-row">
+        <h3>Reverse Engineering &amp; CAD Portfolio Project</h3>
+        <span class="mono">VICTORINOX CLASSIC SD — 2026</span>
+      </div>
+      <p class="mono" style="margin-bottom:14px;">Self-directed · SolidWorks, digital vernier calipers</p>
+
+      <div class="viewer" id="viewer">
+        <div class="viewer-stage" id="viewer-stage">
+          <div class="viewer-loading" id="viewer-loading">Loading model…</div>
+          <div class="viewer-note">Drag to rotate · Scroll to zoom · Right-drag to pan</div>
+        </div>
+        <div class="viewer-parts" id="viewer-parts">
+          <button data-file="models/casing-top.stl" class="active">Handle casing — top</button>
+          <button data-file="models/casing-back.stl">Handle casing — back</button>
+          <button data-file="models/liner.stl">Liner</button>
+          <button data-file="models/blade.stl">Blade</button>
+          <button data-file="models/nail-filer.stl">Nail file / screwdriver</button>
+          <button data-file="models/tweezers.stl">Tweezers</button>
+          <button data-file="models/back-spring-a.stl">Back spring 1</button>
+          <button data-file="models/back-spring-b.stl">Back spring 2</button>
+          <button data-file="models/toothpick.stl">Toothpick</button>
+        </div>
+      </div>
+
+      <p>Reverse-engineering a 58&nbsp;mm, seven-function Victorinox Classic SD multi-tool from the physical product into a fully parametric SolidWorks model — no manufacturer CAD or published drawings were available, so every part was measured and modelled from scratch.</p>
+
+      <ul>
+        <li>Hybrid measurement strategy: digital vernier calipers for functional dimensions (pivot diameters, hole centres, layer thicknesses), cross-checked against the 58 × 18 × 9&nbsp;mm overall envelope, with photographic sketch-tracing for free-form tool profiles.</li>
+        <li>Common datum scheme (origin at the rear pivot centre, X-axis through both pin centres) keeps the layer stack-up and assembly mates consistent across all parts.</li>
+        <li>Manufacturing detail modelled as real geometry rather than appearance maps — stamped depressions with draft and asymmetric blend fillets on the 0.5&nbsp;mm liners, and a wrapped crosshatch abrasive texture on the nail file.</li>
+      </ul>
+
+      <div class="status-row">
+        <div><span class="status-dot done"></span><span class="mono">DONE:</span> liners, handle scales, nail file/screwdriver, back springs, blade</div>
+      </div>
+      <div class="status-row" style="margin-top:-10px;">
+        <div><span class="status-dot next"></span><span class="mono">NEXT:</span> scissors, final pivot mates, interference/collision detection, mass properties, four BS-standard drawings</div>
+      </div>
+
+      <p>The back springs are preloaded in situ, so once the assembly is complete the plan is to model two mechanism states: a closed state (tool folded, springs seated/assembled) and an open state (blade deployed, springs in their free, as-manufactured form) — with the free state as the master part and the seated shape captured as a driven configuration.</p>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-title-row">
+        <h3>MSc Dissertation — Wind Farms Built Into Existing Buildings</h3>
+        <span class="mono">KINGSTON UNIVERSITY — 2025</span>
+      </div>
+      <p class="mono" style="margin-bottom:14px;">Supervisor: Dr Konstantin Volkov · ANSYS CFX / Design Modeler</p>
+
+      <p>Built a full CFD simulation pipeline in ANSYS — 3D geometry in ANSYS Design Modeler, computational domain creation, and a 2.2-million-element mesh with 20 inflation layers — to optimise rooftop wind turbine placement on a 200&nbsp;m high-rise building.</p>
+
+      <div class="result-strip">
+        <div><span class="num">+32%</span>power vs. row-column layout</div>
+        <div><span class="num">9,410 W</span>hexagonal (staggered) layout</div>
+        <div><span class="num">7,121 W</span>row-column layout</div>
+        <div><span class="num">2.2M</span>element mesh, 20 inflation layers</div>
+      </div>
+
+      <p>Compared hexagonal (staggered) vs. row-column turbine configurations; the hexagonal layout delivered the higher total power and produced practical layout recommendations supporting UN Sustainable Development Goals 7 and 11.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Education &amp; Certifications</h2>
+    </div>
+    <div class="ed-grid">
+      <div class="ed-item">
+        <h4>MSc Advanced Product Design Engineering &amp; Manufacturing</h4>
+        <span class="mono">Kingston University London · 2024–2025</span>
+        <p>Key modules: Computer Integrated Product Development; Advanced CAD/CAM Systems; Engineering Research Techniques, Entrepreneurship &amp; Quality Management; Individual Project (Dissertation). Lab experience in 3D printing, CNC machining, 3D laser scanning, metrology and materials testing.</p>
+      </div>
+      <div class="ed-item">
+        <h4>BTech Mechanical Engineering</h4>
+        <span class="mono">SRM University, Chennai · 2020–2024</span>
+        <p>Four-year undergraduate degree covering engineering design, thermodynamics, fluid mechanics, manufacturing processes, materials science and machine design.</p>
+      </div>
+      <div class="ed-item">
+        <h4>Certified SolidWorks Associate (CSWA)</h4>
+        <span class="mono">Dassault Systèmes · July 2026</span>
+        <p>Certification covering part modelling, assemblies, and engineering drawings.</p>
+      </div>
+      <div class="ed-item">
+        <h4>Certified SolidWorks Professional (CSWP)</h4>
+        <span class="mono">In preparation · targeting September 2026</span>
+        <p>Next certification milestone, building on CSWA.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-grid">
+      <div>
+        <span class="mono">DRAWN BY</span>
+        Abhiram Reddy Tadi
+      </div>
+      <div>
+        <span class="mono">CONTACT</span>
+        <a href="mailto:abhiramtadi@gmail.com">abhiramtadi@gmail.com</a>
+      </div>
+      <div>
+        <span class="mono">LINKEDIN</span>
+        <a href="https://linkedin.com/in/abhiramreddytadi" target="_blank">linkedin.com/in/abhiramreddytadi</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function(){
+  var stage = document.getElementById('viewer-stage');
+  var loadingEl = document.getElementById('viewer-loading');
+  var partsBar = document.getElementById('viewer-parts');
+  if(!stage || !window.THREE || !THREE.STLLoader || !THREE.OrbitControls){
+    if(loadingEl) loadingEl.textContent = '3D viewer unavailable in this browser — see the part images below.';
+    return;
+  }
+
+  var scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xFFFFFF);
+
+  var camera = new THREE.PerspectiveCamera(40, 1, 0.1, 5000);
+  var renderer;
+  try{
+    renderer = new THREE.WebGLRenderer({antialias:true});
+  }catch(e){
+    loadingEl.textContent = 'WebGL is not available in this browser — see the part images below.';
+    return;
+  }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  stage.appendChild(renderer.domElement);
+
+  // lighting: ambient base + soft key + fill so the surface reads clearly, not near-black
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x2a2e33, 0.9));
+  var key = new THREE.DirectionalLight(0xffffff, 1.1);
+  key.position.set(1, 1, 1.2);
+  scene.add(key);
+  var fill = new THREE.DirectionalLight(0xB8C6E0, 0.6);
+  fill.position.set(-1, 0.3, -0.8);
+  scene.add(fill);
+
+  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 1.2;
+  // stop auto-rotate once the visitor takes over
+  renderer.domElement.addEventListener('pointerdown', function(){ controls.autoRotate = false; }, {once:true});
+
+  var material = new THREE.MeshPhongMaterial({
+    color: 0x6E7A8C,
+    specular: 0xFFFFFF,
+    shininess: 45,
+    side: THREE.DoubleSide
+  });
+
+  var current = null;
+  var loader = new THREE.STLLoader();
+
+  function resize(){
+    var w = stage.clientWidth, h = stage.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function fitCamera(mesh){
+    var box = new THREE.Box3().setFromObject(mesh);
+    var size = box.getSize(new THREE.Vector3());
+    var maxDim = Math.max(size.x, size.y, size.z);
+    var fov = camera.fov * Math.PI / 180;
+    var dist = (maxDim / 2) / Math.tan(fov / 2) * 1.35;
+    camera.position.set(dist * 0.8, dist * 0.55, dist * 0.9);
+    camera.near = dist / 100;
+    camera.far = dist * 100;
+    camera.updateProjectionMatrix();
+    controls.target.set(0, 0, 0);
+    controls.minDistance = dist * 0.25;
+    controls.maxDistance = dist * 4;
+    controls.update();
+  }
+
+  function loadPart(file){
+    loadingEl.style.display = 'flex';
+    loadingEl.textContent = 'Loading model…';
+    loader.load(file, function(geometry){
+      if(current){ scene.remove(current); current.geometry.dispose(); }
+      geometry.computeVertexNormals();
+      geometry.center();
+      var mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+      current = mesh;
+      fitCamera(mesh);
+      loadingEl.style.display = 'none';
+    }, undefined, function(){
+      loadingEl.textContent = 'Could not load this part.';
+    });
+  }
+
+  partsBar.addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-file]');
+    if(!btn) return;
+    partsBar.querySelectorAll('button').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    controls.autoRotate = true;
+    renderer.domElement.addEventListener('pointerdown', function(){ controls.autoRotate = false; }, {once:true});
+    loadPart(btn.getAttribute('data-file'));
+  });
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion) controls.autoRotate = false;
+
+  function animate(){
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  loadPart(partsBar.querySelector('button.active').getAttribute('data-file'));
+})();
+</script>
+
+</body>
+</html>
