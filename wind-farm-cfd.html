@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rooftop Wind Farm CFD | Abhiram Reddy Tadi</title>
+<meta name="description" content="MSc dissertation: ANSYS CFX study of hexagonal vs row-column turbine layouts on a 200 m high-rise. Hexagonal layout produced about 32% more power.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rooftop Wind Farm CFD | Abhiram Reddy Tadi">
+<meta property="og:description" content="MSc dissertation: ANSYS CFX study of hexagonal vs row-column turbine layouts on a 200 m high-rise. Hexagonal layout produced about 32% more power.">
+<meta property="og:image" content="https://abhiramtadi.github.io/renders/cfd-p69-contour-full.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%231D2124%27/%3E%3Cpath d=%27M64 0v14L50 0z%27 fill=%27%23A87C3F%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-size=%2726%27 font-family=%27Arial,sans-serif%27 font-weight=%27700%27 fill=%27%23F5F3EC%27 text-anchor=%27middle%27%3EAT%3C/text%3E%3C/svg%3E">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="705f27f2-b603-429b-a3ab-a502c1ba21ac"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><style>html{scrollbar-gutter:stable;overflow-x:clip}body{margin:0;background-color:#F2F0E9;background-image:repeating-linear-gradient(45deg,rgba(29,33,36,.028) 0 1px,transparent 1px 64px),repeating-linear-gradient(-45deg,rgba(29,33,36,.02) 0 1px,transparent 1px 64px),linear-gradient(rgba(29,33,36,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(29,33,36,.05) 1px,transparent 1px),linear-gradient(rgba(29,33,36,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(29,33,36,.09) 1px,transparent 1px);background-size:64px 64px,64px 64px,28px 28px,28px 28px,140px 140px,140px 140px;color:#1D2124;font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.6}*{box-sizing:border-box}a{color:#2B4C7E;text-decoration:none}a:hover{color:#A87C3F}img{max-width:100%}@keyframes flashColorPulse{0%,100%{color:#1D2124}50%{color:#A87C3F}}@media (max-width:1319px){.case-toc{display:none}}.nav-projects{position:relative;display:inline-flex;align-items:center}.nav-projects .nav-dropdown{opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity 0.15s,transform 0.15s;position:absolute;top:100%;left:0;padding-top:8px;margin-top:-1px;min-width:210px;z-index:20}.nav-projects .nav-dropdown-inner{background:#FBFAF6;border:1px solid #3A3F44;border-radius:3px;overflow:hidden;box-shadow:0 10px 24px rgba(29,33,36,0.16)}.nav-projects:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0)}.nav-projects:hover .nav-caret{transform:rotate(180deg)}.nav-dropdown-item:hover{background:#EDEAE0!important;box-shadow:inset 3px 0 0 #A87C3F;padding-left:17px!important}</style><template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#1D2124"/><text x="100" y="112" font-size="64" fill="#F5F3EC" text-anchor="middle" font-family="sans-serif">AT</text></svg></template></helmet>
+<header style="border-bottom:2px solid #1D2124">
+  <div style="max-width:1080px;margin:0 auto;padding:18px 28px;display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <a href="index.html" style="font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;color:#1D2124">Abhiram Reddy Tadi</a>
+      <span style="width:1px;height:20px;background:#C9C4B6"></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:#4B5157;letter-spacing:0.04em">PRODUCT DESIGN ENGINEERING</span>
+    </div>
+    <nav style="display:flex;gap:8px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.05em;align-items:stretch">
+      <a href="index.html" style="border:1px solid #3A3F44;padding:11px 20px;min-width:88px;border-radius:3px;text-align:center;background:#FBFAF6;color:#1D2124;display:inline-flex;align-items:center;justify-content:center;font-weight:500;box-shadow:0 2px 6px rgba(29,33,36,0.13),inset 0 1px 0 rgba(255,255,255,0.6);transition:box-shadow 0.15s,border-color 0.15s,transform 0.15s" style-hover="box-shadow:0 0 10px rgba(168,124,63,0.45);border-color:#A87C3F;transform:translateY(-1px)">HOME</a>
+      <span class="nav-projects"><a href="projects.html" style="border:1px solid #1D2124;padding:11px 20px;min-width:88px;border-radius:3px;background:#1D2124;color:#F5F3EC;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-weight:500;box-shadow:0 3px 10px rgba(29,33,36,0.3),inset 0 1px 0 rgba(255,255,255,0.08);transition:box-shadow 0.15s,transform 0.15s" style-hover="box-shadow:0 0 10px rgba(168,124,63,0.6);transform:translateY(-1px)" style-before="content:'';position:absolute;top:-1px;right:-1px;width:0;height:0;border-style:solid;border-width:0 9px 9px 0;border-color:transparent #A87C3F transparent transparent">PROJECTS<span style="font-size:0.6rem;line-height:1;transition:transform 0.15s" class="nav-caret">▾</span></a><div class="nav-dropdown"><div class="nav-dropdown-inner"><a href="classic-sd.html" class="nav-dropdown-item" style="display:block;padding:11px 14px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:#1D2124;transition:background 0.12s">CLASSIC SD MULTI-TOOL</a><a href="wind-farm-cfd.html" class="nav-dropdown-item" style="display:block;padding:11px 14px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:#1D2124;border-top:1px solid #C9C4B6;transition:background 0.12s">ROOFTOP WIND FARM CFD</a></div></div></span>
+      <a href="about.html" style="border:1px solid #3A3F44;padding:11px 20px;min-width:88px;border-radius:3px;text-align:center;background:#FBFAF6;color:#1D2124;display:inline-flex;align-items:center;justify-content:center;font-weight:500;box-shadow:0 2px 6px rgba(29,33,36,0.13),inset 0 1px 0 rgba(255,255,255,0.6);transition:box-shadow 0.15s,border-color 0.15s,transform 0.15s" style-hover="box-shadow:0 0 10px rgba(168,124,63,0.45);border-color:#A87C3F;transform:translateY(-1px)">ABOUT</a>
+      <a href="contact.html" style="border:1px solid #3A3F44;padding:11px 20px;min-width:88px;border-radius:3px;text-align:center;background:#FBFAF6;color:#1D2124;display:inline-flex;align-items:center;justify-content:center;font-weight:500;box-shadow:0 2px 6px rgba(29,33,36,0.13),inset 0 1px 0 rgba(255,255,255,0.6);transition:box-shadow 0.15s,border-color 0.15s,transform 0.15s" style-hover="box-shadow:0 0 10px rgba(168,124,63,0.45);border-color:#A87C3F;transform:translateY(-1px)">CONTACT</a>
+      <a href="Abhiram_Reddy_Tadi_CV.pdf" download="Abhiram_Reddy_Tadi_CV.pdf" target="_blank" style="border:1px solid #A87C3F;padding:11px 18px;border-radius:3px;text-align:center;background:#A87C3F;color:#FBFAF6;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-weight:500;box-shadow:0 2px 6px rgba(29,33,36,0.18);transition:box-shadow 0.15s,transform 0.15s" style-hover="box-shadow:0 0 12px rgba(168,124,63,0.6);transform:translateY(-1px);color:#FBFAF6">CV <span style="font-size:0.8rem;line-height:1">↓</span></a>
+    </nav>
+  </div>
+</header>
+
+<aside class="case-toc" style="position:fixed;top:120px;right:max(8px,calc((100vw - 1080px)/2 - 172px));width:168px;border:1px solid #3A3F44;background:#FBFAF6;padding:16px 14px;z-index:5;transition:box-shadow 0.15s,border-color 0.15s,transform 0.15s" style-hover="border-color:#A87C3F;box-shadow:0 6px 18px rgba(29,33,36,0.12);transform:translateY(-2px)">
+  <p style="margin:0 0 12px;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:#4B5157;letter-spacing:0.1em;border-bottom:1px solid #C9C4B6;padding-bottom:10px">ON THIS PAGE</p>
+  <sc-for list="{{ toc }}" as="item" hint-placeholder-count="4">
+    <a href="#" onClick="{{ item.onClick }}" style="{{ item.style }}" style-hover="background:rgba(168,124,63,0.08);color:#1D2124;transform:translateY(-2px) translateX(2px)"><span style="{{ item.numStyle }}">{{ item.num }}</span>{{ item.label }}</a>
+  </sc-for>
+</aside>
+
+<article id="overview" style="max-width:1080px;margin:0 auto;padding:28px 28px 0">
+  <div style="display:flex;gap:18px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:0.72rem">
+    <a href="projects.html" style="color:#4B5157;display:inline-block;transition:transform 0.15s" style-hover="transform:translateX(-3px)">← ALL PROJECTS</a>
+  </div>
+  <h1 style="font-family:'Space Grotesk',sans-serif;margin:16px 0 0;font-size:clamp(1.8rem,4.2vw,2.6rem);line-height:1.1;letter-spacing:-0.015em;max-width:28ch;animation:{{ overviewFlashAnim }}">Rooftop wind farm CFD</h1>
+  <p style="margin:14px 0 0;font-size:1.05rem;color:#4B5157;max-width:66ch">A CFD study optimising wind turbine placement on high-rise rooftops in dense urban environments, using Canary Wharf as the case study.</p>
+
+  <div style="display:flex;flex-wrap:wrap;margin-top:22px;border:1px solid #3A3F44">
+    <div style="padding:10px 16px;border-right:1px solid #3A3F44;flex:1;min-width:min(100%,150px)"><span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:0.66rem;color:#4B5157;letter-spacing:0.04em">WHEN</span><span style="font-size:0.9rem">MSc dissertation, 2025</span></div>
+    <div style="padding:10px 16px;border-right:1px solid #3A3F44;flex:1;min-width:min(100%,150px)"><span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:0.66rem;color:#4B5157;letter-spacing:0.04em">TOOLS</span><span style="font-size:0.9rem">ANSYS CFX, Design Modeler</span></div>
+    <div style="padding:10px 16px;flex:1;min-width:min(100%,150px)"><span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:0.66rem;color:#4B5157;letter-spacing:0.04em">SUPERVISOR</span><span style="font-size:0.9rem">Dr Konstantin Volkov</span></div>
+  </div>
+  <p style="margin:20px 0 0;max-width:66ch;color:#4B5157">I modelled a realistic 200 m tall, 64 m × 40 m building with site-specific wind data, a reference velocity of 5.858 m/s at 200 m height, to study where rooftop turbines should sit.</p>
+  <div style="border:1px solid #3A3F44;background:#EEEEF0;margin-top:20px;overflow:hidden">
+    <img src="renders/cfd-p33-building-crop2.jpg" alt="ANSYS geometry of the 200 m modelled building" style="display:block;width:100%;height:clamp(340px,44vw,540px);object-fit:contain">
+    <p style="margin:0;padding:10px 14px;border-top:1px solid #C9C4B6;background:#EDEAE0;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:#4B5157">Design Modeler geometry of the 200 m high rise</p>
+  </div>
+</article>
+
+<section id="approach" style="max-width:1080px;margin:0 auto;padding:44px 28px 0">
+  <div style="border-top:1px solid #C9C4B6;padding-top:32px">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#A87C3F;font-size:0.8rem">01</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;margin:0;font-size:1.35rem;letter-spacing:-0.01em;animation:{{ approachFlashAnim }}">Approach</h2>
+    </div>
+    <p style="margin:0 0 14px;max-width:66ch;color:#4B5157">Turbine blades were modelled as a porous medium to simulate swept-volume flow resistance and energy absorption, rather than fully resolving blade geometry, a standard simplification for comparing layout-level performance across many turbines.</p>
+    <p style="margin:0 0 20px;max-width:66ch;color:#4B5157">I compared two rooftop configurations, hexagonal (staggered) and row-column (grid), across a range of flow resistance coefficients (k = 0 to 1.5), looking at wake recovery, turbulence intensity and total power output for each.</p>
+    <div style="border:1px solid #3A3F44;background:#EEEEF0;overflow:hidden">
+      <img loading="lazy" decoding="async" src="renders/cfd-p37-img_p36_2.jpg" alt="Mesh refinement around the porous turbine cylinders" style="display:block;width:100%;height:clamp(260px,34vw,420px);object-fit:cover">
+      <p style="margin:0;padding:10px 14px;border-top:1px solid #C9C4B6;background:#EDEAE0;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:#4B5157">Mesh refinement around the porous turbine cylinders, part of the 2.2 million element mesh</p>
+    </div>
+  </div>
+</section>
+
+<section id="results" style="max-width:1080px;margin:0 auto;padding:44px 28px 0">
+  <div style="border-top:1px solid #C9C4B6;padding-top:32px">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#A87C3F;font-size:0.8rem">02</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;margin:0;font-size:1.35rem;letter-spacing:-0.01em;animation:{{ resultsFlashAnim }}">Key results</h2>
+    </div>
+    <p style="margin:0 0 20px;max-width:66ch;color:#4B5157">The hexagonal layout outperformed the row-column layout in total power output at every resistance coefficient tested, for example 9,410 W vs 7,121 W at k = 1.5. The staggered arrangement reduced direct wake interference and let velocity recover faster downstream. It came at a cost: only 7 turbines fit in the hexagonal layout on the modelled roof, against 9 in row-column, a real trade-off between aerodynamic efficiency and space utilisation.</p>
+    <div style="display:flex;gap:22px;flex-wrap:wrap;border:1px solid #3A3F44;background:#fff;padding:18px">
+      <div style="font-size:0.82rem;padding:6px 8px;margin:-6px -8px;transition:box-shadow 0.15s,transform 0.15s" style-hover="box-shadow:0 0 10px rgba(168,124,63,0.35);transform:translateY(-2px)"><span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:1.15rem;color:#2B4C7E">9,410 W</span>hexagonal, 7 turbines</div>
+      <div style="font-size:0.82rem;padding:6px 8px;margin:-6px -8px;transition:box-shadow 0.15s,transform 0.15s" style-hover="box-shadow:0 0 10px rgba(168,124,63,0.35);transform:translateY(-2px)"><span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:1.15rem;color:#2B4C7E">7,121 W</span>row-column, 9 turbines</div>
+      <div style="font-size:0.82rem;padding:6px 8px;margin:-6px -8px;transition:box-shadow 0.15s,transform 0.15s" style-hover="box-shadow:0 0 10px rgba(168,124,63,0.35);transform:translateY(-2px)"><span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:1.15rem;color:#2B4C7E">2.2M</span>mesh elements, 20 layers</div>
+    </div>
+    <p style="margin:20px 0 12px;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:#4B5157;letter-spacing:0.03em">HEXAGONAL LAYOUT, K=1.5</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px">
+      <figure style="margin:0;border:1px solid #3A3F44;background:#EEEEF0;transition:box-shadow 0.15s,border-color 0.15s" style-hover="box-shadow:0 0 14px rgba(168,124,63,0.3);border-color:#A87C3F">
+        <img loading="lazy" decoding="async" src="renders/cfd-p69-contour-full.jpg" alt="Velocity contour through the hexagonal turbine layout at K=1.5" style="display:block;width:100%;height:auto">
+        <figcaption style="padding:8px 12px;border-top:1px solid #C9C4B6;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:#4B5157">Velocity contour, hexagonal layout, K=1.5</figcaption>
+      </figure>
+      <figure style="margin:0;border:1px solid #3A3F44;background:#EEEEF0;transition:box-shadow 0.15s,border-color 0.15s" style-hover="box-shadow:0 0 14px rgba(168,124,63,0.3);border-color:#A87C3F">
+        <img loading="lazy" decoding="async" src="renders/cfd-p69-streamline-full.jpg" alt="Velocity streamlines through the hexagonal turbine layout at K=1.5" style="display:block;width:100%;height:auto">
+        <figcaption style="padding:8px 12px;border-top:1px solid #C9C4B6;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:#4B5157">Velocity streamlines, hexagonal layout, K=1.5</figcaption>
+      </figure>
+    </div>
+    <p style="margin:20px 0 12px;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:#4B5157;letter-spacing:0.03em">ROW-COLUMN LAYOUT, K=1.5</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px">
+      <figure style="margin:0;border:1px solid #3A3F44;background:#EEEEF0;transition:box-shadow 0.15s,border-color 0.15s" style-hover="box-shadow:0 0 14px rgba(168,124,63,0.3);border-color:#A87C3F">
+        <img loading="lazy" decoding="async" src="renders/cfd-p69-img_p68_1.jpg" alt="Velocity contour through the row-column turbine layout at K=1.5" style="display:block;width:100%;height:auto">
+        <figcaption style="padding:8px 12px;border-top:1px solid #C9C4B6;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:#4B5157">Velocity contour, row-column layout, K=1.5</figcaption>
+      </figure>
+      <figure style="margin:0;border:1px solid #3A3F44;background:#EEEEF0;transition:box-shadow 0.15s,border-color 0.15s" style-hover="box-shadow:0 0 14px rgba(168,124,63,0.3);border-color:#A87C3F">
+        <img loading="lazy" decoding="async" src="renders/cfd-p69-img_p68_4.jpg" alt="Velocity streamlines through the row-column turbine layout at K=1.5" style="display:block;width:100%;height:auto">
+        <figcaption style="padding:8px 12px;border-top:1px solid #C9C4B6;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:#4B5157">Velocity streamlines, row-column layout, K=1.5</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="takeaway" style="max-width:1080px;margin:0 auto;padding:44px 28px 0">
+  <div style="border-top:1px solid #C9C4B6;padding-top:32px">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px">
+      <span style="font-family:'IBM Plex Mono',monospace;color:#A87C3F;font-size:0.8rem">03</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;margin:0;font-size:1.35rem;letter-spacing:-0.01em;animation:{{ takeawayFlashAnim }}">Takeaway</h2>
+    </div>
+    <p style="margin:0 0 16px;max-width:66ch;color:#4B5157">Turbine layout geometry is a major lever for urban wind energy performance, a finding that matches published literature (Hansen, Hau) but grounded here in a realistic high-rise building model rather than an idealised open field.</p>
+    <p style="margin:0;max-width:66ch;color:#4B5157"><strong style="font-weight:600">Next, I'd want to:</strong> resolve full blade geometry instead of the porous-medium simplification, test intermediate k values between 0 and 1.5, and run a second building footprint to see how much of the hexagonal advantage is site-specific.</p>
+  </div>
+</section>
+
+<section style="max-width:1080px;margin:0 auto;padding:44px 28px 0">
+  <div style="border-top:1px solid #C9C4B6;padding-top:28px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center">
+    <a href="index.html" style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;display:inline-block;transition:transform 0.15s" style-hover="transform:translateX(-3px)">← Back to home</a>
+    <a href="contact.html" style="border:1px solid #3A3F44;padding:10px 20px;font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:#1D2124">GET IN TOUCH</a>
+  </div>
+</section>
+
+<footer style="border-top:2px solid #1D2124;margin-top:44px">
+  <div style="max-width:1080px;margin:0 auto;padding:22px 28px 40px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:#4B5157">
+    <span>ABHIRAM REDDY TADI</span>
+    <a href="mailto:abhiramtadi@gmail.com">ABHIRAMTADI@GMAIL.COM</a>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { active: "overview" };
+  sectionIds = ["overview","approach","results","takeaway"];
+  labels = { overview: "Overview", approach: "Approach", results: "Key results", takeaway: "Takeaway" };
+  componentDidMount() {
+    this.scanActive = () => {
+      if (Date.now() < (this.suppressUntil || 0)) return;
+      const lineY = 130;
+      let current = null;
+      let lastCrossed = this.sectionIds[0];
+      for (const id of this.sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= lineY) lastCrossed = id;
+        if (r.top <= lineY && r.bottom > lineY) current = id;
+      }
+      current = current || lastCrossed;
+      const doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) current = this.sectionIds[this.sectionIds.length - 1];
+      if (current !== this.state.active) this.setState({ active: current });
+    };
+    this.rafLoop = () => {
+      this.scanActive();
+      this.rafId = requestAnimationFrame(this.rafLoop);
+    };
+    this.rafId = requestAnimationFrame(this.rafLoop);
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.rafId);
+  }
+  scrollToSection(id) {
+    return (e) => {
+      e.preventDefault();
+      const el = document.getElementById(id);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 84;
+      this.suppressUntil = Date.now() + 1000;
+      window.scrollTo({ top, behavior: "smooth" });
+      this.setState({ active: id });
+    };
+  }
+  renderVals() {
+    const anim = (id) => this.state.active === id ? "flashColorPulse 2.4s ease-in-out infinite" : "none";
+    const toc = this.sectionIds.map((id, i) => {
+      const on = this.state.active === id;
+      return {
+        label: this.labels[id],
+        num: String(i + 1).padStart(2, "0"),
+        onClick: this.scrollToSection(id),
+        numStyle: `font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:${on ? "#A87C3F" : "#8A8F94"};margin-right:8px;letter-spacing:0.02em`,
+        style: `display:flex;align-items:baseline;line-height:1.3;overflow-wrap:break-word;padding:9px 8px;margin:0 -8px;border-radius:2px;font-family:'Space Grotesk',sans-serif;font-size:0.86rem;background:${on ? "rgba(168,124,63,0.08)" : "transparent"};border-left:2px solid ${on ? "#A87C3F" : "transparent"};border-bottom:${i < this.sectionIds.length - 1 ? "1px solid #E4E0D3" : "none"};color:${on ? "#1D2124" : "#4B5157"};font-weight:${on ? "600" : "500"};transition:background 0.15s,color 0.15s,border-color 0.15s,transform 0.15s`
+      };
+    });
+    return {
+      toc,
+      overviewFlashAnim: anim("overview"),
+      approachFlashAnim: anim("approach"),
+      resultsFlashAnim: anim("results"),
+      takeawayFlashAnim: anim("takeaway")
+    };
+  }
+}
+</script>
+</body>
+</html>
